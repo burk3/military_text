@@ -50,11 +50,11 @@ static char str_topbar[LINE_BUFFER_SIZE];
 static char str_bottombar[LINE_BUFFER_SIZE];
 static bool busy_animating_in = false;
 static bool busy_animating_out = false;
-const int hour1_y = 15;
-const int hour2_y = 43;
-const int min1_y = 78;
-const int min2_y = 105;
-const int textline_size = 42;
+const int hour1_y = 10;
+const int hour2_y = 35;
+const int min1_y = 75;
+const int min2_y = 102;
+const int textline_size = 50;
 
 GFont text_font;
 GFont text_font_light;
@@ -191,7 +191,7 @@ void handle_init(AppContextRef ctx) {
   bar_font = fonts_get_system_font(FONT_KEY_GOTHIC_14);
 
   // white_bg
-  text_layer_init(&white_bg, GRect(0, hour1_y, 144, 72));
+  text_layer_init(&white_bg, GRect(0, hour1_y, 144, (83 - hour1_y)));
   text_layer_set_background_color(&white_bg, GColorWhite);
 
   // hour1
@@ -265,14 +265,14 @@ void handle_init(AppContextRef ctx) {
   init_watch(&t);
 
   layer_add_child(&window.layer, &white_bg.layer);
-  layer_add_child(&window.layer, &line3.layer[0].layer);
-  layer_add_child(&window.layer, &line3.layer[1].layer);
   layer_add_child(&window.layer, &line4.layer[0].layer);
-  layer_add_child(&window.layer, &line4.layer[1].layer);
-  layer_add_child(&window.layer, &line1.layer[0].layer);
-  layer_add_child(&window.layer, &line1.layer[1].layer);
+  layer_add_child(&window.layer, &line4.layer[1].layer);  
+  layer_add_child(&window.layer, &line3.layer[0].layer);
+  layer_add_child(&window.layer, &line3.layer[1].layer); 
   layer_add_child(&window.layer, &line2.layer[0].layer);
   layer_add_child(&window.layer, &line2.layer[1].layer);
+  layer_add_child(&window.layer, &line1.layer[0].layer);
+  layer_add_child(&window.layer, &line1.layer[1].layer);
   layer_add_child(&window.layer, &bottombarLayer.layer); 
   layer_add_child(&window.layer, &topbarLayer.layer);
 }

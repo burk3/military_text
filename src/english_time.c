@@ -122,7 +122,14 @@ void military_time_4lines(int hours, int minutes, char* str_hour1, char* str_hou
   strcpy(str_minute1, "");
   strcpy(str_minute2, "");
 
-  if((hours == 14) || (hours > 15)) {
+  if(hours > 20) {
+    strcpy(str_hour1, TWENS[0]);
+    strcpy(str_hour2, ONETEENS[hours%10]); 
+  }
+  else if(hours == 20) {
+    strcpy(str_hour2, TWENS[0]);
+  }
+  else if((hours == 14) || (hours > 15)) {
     strcpy(str_hour1, ONETEENS[hours-10]);
     strcpy(str_hour2, STR_TEEN);
   }
