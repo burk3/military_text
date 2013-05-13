@@ -16,14 +16,14 @@
 
 	   {
 	   	"type":"font",
-	   	"defName": "FONT_TWCENMT_34_BOLD",
+	   	"defName": "FONT_TWCENMT_40_BOLD",
 	   	"file":"fonts/twcenmt_bold.ttf"
 	   },
 
 	   {
 	   	"type":"font",
-	   	"defName": "FONT_TWCENMT_34",
-	   	"file":"fonts/twcenmt_regular.ttf"
+	   	"defName": "FONT_TWCENMT_38",
+	   	"file":"fonts/twcenmt_light.ttf"
 	   }
 	  ]
 }

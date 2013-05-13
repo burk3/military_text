@@ -50,11 +50,11 @@ static char str_topbar[LINE_BUFFER_SIZE];
 static char str_bottombar[LINE_BUFFER_SIZE];
 static bool busy_animating_in = false;
 static bool busy_animating_out = false;
-const int hour1_y = 20;
-const int hour2_y = 50;
-const int min1_y = 80;
-const int min2_y = 110;
-const int textline_size = 35;
+const int hour1_y = 15;
+const int hour2_y = 43;
+const int min1_y = 78;
+const int min2_y = 105;
+const int textline_size = 42;
 
 GFont text_font;
 GFont text_font_light;
@@ -185,39 +185,38 @@ void handle_init(AppContextRef ctx) {
   resource_init_current_app(&APP_RESOURCES);
 
   // Init the text layers used to show the time 
-  text_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_TWCENMT_34_BOLD));
-  text_font_light = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_TWCENMT_34));
-  //text_font = fonts_get_system_font(FONT_KEY_GOTHAM_30_BLACK);
-  //text_font_light = fonts_get_system_font(FONT_KEY_GOTHAM_34_LIGHT_SUBSET);
+  text_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_TWCENMT_40_BOLD));
+  text_font_light = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_TWCENMT_38));
+  //text_font_light = fonts_get_system_font(FONT_KEY_GOTHAM_30_BLACK);
   bar_font = fonts_get_system_font(FONT_KEY_GOTHIC_14);
 
-  //white_bg
-  text_layer_init(&white_bg, GRect(144, hour1_y, 144, 60));
+  // white_bg
+  text_layer_init(&white_bg, GRect(0, hour1_y, 144, 72));
   text_layer_set_background_color(&white_bg, GColorWhite);
 
   // hour1
   text_layer_init(&line1.layer[0], GRect(0, hour1_y, 144, textline_size));
   text_layer_set_text_color(&line1.layer[0], GColorBlack);
-  text_layer_set_background_color(&line1.layer[0], GColorWhite);
+  text_layer_set_background_color(&line1.layer[0], GColorClear);
   text_layer_set_font(&line1.layer[0], text_font);
   text_layer_set_text_alignment(&line1.layer[0], GTextAlignmentLeft);
   
   text_layer_init(&line1.layer[1], GRect(144, hour1_y, 144, textline_size));
   text_layer_set_text_color(&line1.layer[1], GColorBlack);
-  text_layer_set_background_color(&line1.layer[1], GColorWhite);
+  text_layer_set_background_color(&line1.layer[1], GColorClear);
   text_layer_set_font(&line1.layer[1], text_font);
   text_layer_set_text_alignment(&line1.layer[1], GTextAlignmentLeft);
 
-// hour2
+  // hour2
   text_layer_init(&line2.layer[0], GRect(0, hour2_y, 144, textline_size));
   text_layer_set_text_color(&line2.layer[0], GColorBlack);
-  text_layer_set_background_color(&line2.layer[0], GColorWhite);
+  text_layer_set_background_color(&line2.layer[0], GColorClear);
   text_layer_set_font(&line2.layer[0], text_font);
   text_layer_set_text_alignment(&line2.layer[0], GTextAlignmentLeft);
   
   text_layer_init(&line2.layer[1], GRect(144, hour2_y, 144, textline_size));
   text_layer_set_text_color(&line2.layer[1], GColorBlack);
-  text_layer_set_background_color(&line2.layer[1], GColorWhite);
+  text_layer_set_background_color(&line2.layer[1], GColorClear);
   text_layer_set_font(&line2.layer[1], text_font);
   text_layer_set_text_alignment(&line2.layer[1], GTextAlignmentLeft);
 
@@ -225,7 +224,7 @@ void handle_init(AppContextRef ctx) {
   text_layer_init(&line3.layer[0], GRect(0, min1_y, 144, textline_size));
   text_layer_set_text_color(&line3.layer[0], GColorWhite);
   text_layer_set_background_color(&line3.layer[0], GColorClear);
-  text_layer_set_font(&line3.layer[0], text_font_light );
+  text_layer_set_font(&line3.layer[0], text_font_light);
   text_layer_set_text_alignment(&line3.layer[0], GTextAlignmentLeft);
 
   text_layer_init(&line3.layer[1], GRect(144, min1_y, 144, textline_size));

@@ -131,26 +131,26 @@ void military_time_4lines(int hours, int minutes, char* str_hour1, char* str_hou
   }
 
   if(minutes == 0){
-    strcat(str_minute1,STR_HUNDRED);
+    strcpy(str_minute1,STR_HUNDRED);
   }
   else {
     if(minutes < 20) {
       if(minutes < 10) {
-        strcat(str_minute1, ONETEENS[0]);
-        strcat(str_minute2, ONETEENS[minutes]);
+        strcpy(str_minute1, ONETEENS[0]);
+        strcpy(str_minute2, ONETEENS[minutes]);
       }
       else if ((minutes == 14) || (minutes > 15)) {
         strcpy(str_minute1, ONETEENS[minutes-10]);
-        strcat(str_minute2, STR_TEEN);
+        strcpy(str_minute2, STR_TEEN);
       }
       else {
         strcpy(str_minute1, ONETEENS[minutes]);
       }
     }
     else {
-      strcat(str_minute1, TWENS[((minutes/10)%10)-2]);
+      strcpy(str_minute1, TWENS[((minutes/10)%10)-2]);
       if((minutes%10)>0) {
-        strcat(str_minute2, ONETEENS[minutes%10]); 
+        strcpy(str_minute2, ONETEENS[minutes%10]); 
       } 
     }
   }
