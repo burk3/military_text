@@ -40,6 +40,7 @@ TextLayer bottombarLayer;
 TextLayer white_bg;
 TextLine line1;
 TextLine line2;
+TextLine line2bg;
 TextLine line3;
 TextLine line4;
 
@@ -50,8 +51,8 @@ static char str_topbar[LINE_BUFFER_SIZE];
 static char str_bottombar[LINE_BUFFER_SIZE];
 static bool busy_animating_in = false;
 static bool busy_animating_out = false;
-const int hour1_y = 10;
-const int hour2_y = 35;
+const int hour1_y = 15;
+const int hour2_y = 40;
 const int min1_y = 75;
 const int min2_y = 102;
 const int textline_size = 50;
@@ -144,6 +145,7 @@ void update_watch(PblTm* t) {
   }
     //update hour2 only if changed
   if(strcmp(new_time.hour2,cur_time.hour2) != 0){
+    updateLayer(&line2bg, 2); 
     updateLayer(&line2, 2);
   }
   //update min1 only if changed
@@ -167,6 +169,7 @@ void init_watch(PblTm* t) {
   text_layer_set_text(&bottombarLayer, str_bottombar);
   text_layer_set_text(&line1.layer[0], cur_time.hour1);
   text_layer_set_text(&line2.layer[0], cur_time.hour2);
+  text_layer_set_text(&line2bg.layer[0], cur_time.hour2); 
   text_layer_set_text(&line3.layer[0], cur_time.min1);
   text_layer_set_text(&line4.layer[0], cur_time.min2);
 
@@ -220,6 +223,19 @@ void handle_init(AppContextRef ctx) {
   text_layer_set_font(&line2.layer[1], text_font);
   text_layer_set_text_alignment(&line2.layer[1], GTextAlignmentLeft);
 
+  // hour2_whitebg
+  text_layer_init(&line2bg.layer[0], GRect(0, hour2_y, 144, textline_size));
+  text_layer_set_text_color(&line2bg.layer[0], GColorWhite);
+  text_layer_set_background_color(&line2bg.layer[0], GColorClear);
+  text_layer_set_font(&line2bg.layer[0], text_font);
+  text_layer_set_text_alignment(&line2bg.layer[0], GTextAlignmentLeft);
+  
+  text_layer_init(&line2bg.layer[1], GRect(144, hour2_y, 144, textline_size));
+  text_layer_set_text_color(&line2bg.layer[1], GColorWhite);
+  text_layer_set_background_color(&line2bg.layer[1], GColorClear);
+  text_layer_set_font(&line2bg.layer[1], text_font);
+  text_layer_set_text_alignment(&line2bg.layer[1], GTextAlignmentLeft);
+
   // min1
   text_layer_init(&line3.layer[0], GRect(0, min1_y, 144, textline_size));
   text_layer_set_text_color(&line3.layer[0], GColorWhite);
@@ -264,6 +280,8 @@ void handle_init(AppContextRef ctx) {
   get_time(&t);
   init_watch(&t);
 
+  layer_add_child(&window.layer, &line2bg.layer[0].layer);
+  layer_add_child(&window.layer, &line2bg.layer[1].layer);
   layer_add_child(&window.layer, &white_bg.layer);
   layer_add_child(&window.layer, &line4.layer[0].layer);
   layer_add_child(&window.layer, &line4.layer[1].layer);  
