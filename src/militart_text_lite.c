@@ -160,7 +160,7 @@ void init_watch(PblTm* t) {
   //Let's get the new time and date
   military_time_4lines(t->tm_hour, t->tm_min, cur_time.hour1, cur_time.hour2, cur_time.min1, cur_time.min2);
   string_format_time(str_topbar, sizeof(str_topbar), "%A | %e %b", t);
-  string_format_time(str_bottombar, sizeof(str_bottombar), " %r | Week %W", t);
+  string_format_time(str_bottombar, sizeof(str_bottombar), " %R | Week %W", t);
   
   //Let's update the top and bottom bar anyway - **to optimize later to only update top bar every new day.
   text_layer_set_text(&topbarLayer, str_topbar);
@@ -286,7 +286,7 @@ void handle_deinit(AppContextRef ctx) {
 }
 
 // Called once per second
-void handle_second_tick(AppContextRef ctx, PebbleTickEvent *t) {
+void handle_minute_tick(AppContextRef ctx, PebbleTickEvent *t) {
   (void)ctx;
 
   if (busy_animating_out || busy_animating_in) return;
@@ -304,10 +304,11 @@ void pbl_main(void *params) {
 
     // Handle time updates
     .tick_info = {
-      .tick_handler = &handle_second_tick,
-      .tick_units = SECOND_UNIT
+      .tick_handler = &handle_minute_tick,
+      .tick_units = MINUTE_UNIT
     }
 
   };
   app_event_loop(params, &handlers);
 }
+
