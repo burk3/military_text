@@ -5,3 +5,6 @@ resources/wdscript
 tools
 waf
 wscript
+build
+.waf*
+.lock*
