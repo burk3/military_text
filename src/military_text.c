@@ -11,15 +11,15 @@
 #include "pebble_fonts.h"
 #include "english_time.h"
 
-#define MY_UUID { 0xD1, 0x0B, 0x15, 0xB9, 0x76, 0xE7, 0x45, 0x91, 0xAB, 0x89, 0x30, 0x57, 0x59, 0xB6, 0x42, 0xF3 }
+#define MY_UUID { 0x47, 0x28, 0xEA, 0xB0, 0x39, 0x05, 0x42, 0xC2, 0x9E, 0xBB, 0x61, 0xA9, 0xEE, 0xAE, 0x58, 0x8A }
 PBL_APP_INFO(MY_UUID,
-             "Military Text", "atpeaz.com",
+             "Military Text Lite", "tactilecact.us",
              1, 0, /* App version */
              RESOURCE_ID_IMAGE_MENU_ICON,
              APP_INFO_WATCH_FACE);
 #define ANIMATION_DURATION 800
 #define LINE_BUFFER_SIZE 50
-#define WINDOW_NAME "military_text"
+#define WINDOW_NAME "military_text_lite"
 
 Window window;
 

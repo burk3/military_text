@@ -1,0 +1,7 @@
+include
+lib
+pebble_app.ld
+resources/wdscript
+tools
+waf
+wscript
